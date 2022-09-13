@@ -5,25 +5,35 @@
 # Пример:
 # - пусть N = 4, тогда [ 1, 2, 6, 24 ] (1, 1*2, 1*2*3, 1*2*3*4)
 
-def InputNumbers(inputText):
-    is_OK = False
-    while not is_OK:
+
+def InputNumbers():
+    index = True
+    while index:
         try:
-            number = int(input(f"{inputText}"))
-            is_OK = True
+            number = int(input("Введите целое число : "))
+            index = False
         except ValueError:
-            print("Это не число!")
+            print("Это не целое число.")
     return number
 
 
-def checkNumber(num):
-    if 6 <= num <= 7:
-        print("Yes")
-    elif 0 < num < 6:
-        print("No")
+def Factorial(number):
+    if number > 1:
+        number = number*Factorial(number-1)
+    return number
+
+
+def SetOfWorks(number):
+    if number < 1:
+        print(f"N = {number}, тогда набор произведений чисел от 1 до N не существует")
     else:
-        print("число вне пределов 7 дней")
+        setOfWorks = []
+        i = 1
+        while i<=number:
+            setOfWorks.append(Factorial(i))
+            i=i+1
+        return setOfWorks
 
 
-num = InputNumbers("Введите число: ")
-checkNumber(num)
+number = InputNumbers()
+print(f"{number} -> {SetOfWorks(number)}")
